@@ -1,0 +1,1 @@
+$i = (get-itemproperty 'HKLM:\SOFTWARE\Microsoft\Microsoft SQL Server').InstalledInstances | ForEach-Object { "localhost\$_" }foreach ($instance in $i) {   Invoke-Sqlcmd "use ims select physical_name from sys.database_files where type = 2" -ServerInstance $instance }
